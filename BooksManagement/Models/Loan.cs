@@ -12,6 +12,7 @@ namespace BooksManagement.Models
         public DateTime LoanDate { get; set; }
         public DateTime ReturnDate { get; set; }
         public string Borrower {  get; set; }
+        public bool returned { get; set; }
         public Guid BookId { get; set; }
         public Book Book { get; set; }
 

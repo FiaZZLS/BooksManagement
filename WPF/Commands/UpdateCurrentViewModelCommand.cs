@@ -38,7 +38,7 @@ namespace BookManagement.WPF.Commands
                 switch (viewtype)
                 {
                     case ViewType.Home:
-                        _navigator.CurrentViewModel = new HomeViewModel();
+                        _navigator.CurrentViewModel = new HomeViewModel(_loanservice, _bookservice);
                         break;
                     case ViewType.Book:
                         _navigator.CurrentViewModel = new BookViewModel(_bookservice ,_authorservice);

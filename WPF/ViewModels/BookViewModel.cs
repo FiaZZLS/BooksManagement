@@ -16,7 +16,7 @@ namespace BookManagement.WPF.ViewModels
     public class BookViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly IBookService _bookService;
-        private readonly IAuthorService _authorService; // Assume you have an author service
+        private readonly IAuthorService _authorService;
 
         private Book _selectedBook;
         private Author _selectedAuthor;

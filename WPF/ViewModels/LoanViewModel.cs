@@ -31,6 +31,7 @@ namespace BookManagement.WPF.ViewModels
         public ICommand AddCommand { get; }
         public ICommand UpdateCommand { get; }
         public ICommand DeleteCommand { get; }
+        public ICommand MarkAsReturnedCommand { get; }
 
         public LoanViewModel(ILoanService loanService, IBookService bookService)
         {
@@ -39,6 +40,7 @@ namespace BookManagement.WPF.ViewModels
             AddCommand = new RelayCommand(_ => AddLoan());
             UpdateCommand = new RelayCommand(_ => UpdateLoan(), _ => SelectedLoan != null);
             DeleteCommand = new RelayCommand(_ => DeleteLoan(), _ => SelectedLoan != null);
+            MarkAsReturnedCommand = new RelayCommand(_ => MarkAsReturned(), _ => SelectedLoan != null);
 
             InitializeAsync().ConfigureAwait(false);
         }
@@ -108,7 +110,8 @@ namespace BookManagement.WPF.ViewModels
                 LoanDate = LoanDate,
                 ReturnDate = ReturnDate,
                 Borrower = Borrower,
-                BookId = SelectedBook?.Id ?? Guid.Empty
+                BookId = SelectedBook?.Id ?? Guid.Empty,
+                returned = false
             };
 
             await _loanService.Create(newLoan);
@@ -189,6 +192,21 @@ namespace BookManagement.WPF.ViewModels
 
             await _loanService.Delete(SelectedLoan.Id);
             Loans.Remove(SelectedLoan);
+            ClearInputs();
+        }
+
+        private async void MarkAsReturned()
+        {
+            if (SelectedLoan == null) return;
+
+            SelectedLoan.returned = true;
+            await _loanService.Update(SelectedLoan.Id, SelectedLoan);
+
+            var index = Loans.IndexOf(SelectedLoan);
+            if (index >= 0)
+            {
+                Loans[index] = SelectedLoan;
+            }
             ClearInputs();
         }
 

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BookManagement.WPF.ViewModels;
+using EntityFramework;
+using EntityFramework.DataRepository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,8 @@ namespace BookManagement.WPF.View
         public HomeView()
         {
             InitializeComponent();
+            DataContext = new HomeViewModel(new LoanRepository(new BooksDbContext()), new BookRepository(new BooksDbContext()));
+
         }
     }
 }

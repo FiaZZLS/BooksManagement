@@ -1,36 +1,41 @@
 ﻿using BooksManagement.Models;
 using BooksManagement.Services;
-using EntityFramework;
 using EntityFramework.DataRepository;
-namespace ConsoleApp1;
-class Program
+using EntityFramework;
+using System;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
 {
-    static void Main(string[] args)
+    class Program
     {
-        IAuthorService AuthorService = new AuthorRepository(new BooksDbContext());
-        IBookService BookService = new BookRepository(new BooksDbContext());
-
-        for (int i = 0; i <= 10000; i++)
+        static async Task Main(string[] args)
         {
-            var authId = new Guid();
-            AuthorService.Create(new Author
-            {
-                Id = authId,
-                FirstName = "Test" + i,
-                LastName = "Last" + i,
-                DateOfBirth = DateTime.Now
-            }).Wait();
-            BookService.Create(new Book
-            {
-                Id = new Guid(),
-                Title = "Book"+i,
-                AuthorId = authId,
-                ISBN = "ISBN"+i,
-                PublicationYear = DateTime.Now,
+            IAuthorService AuthorService = new AuthorRepository(new BooksDbContext());
+            IBookService BookService = new BookRepository(new BooksDbContext());
 
-            });
+            for (int i = 0; i <= 10000; i++)
+            {
+                var authId = Guid.NewGuid();
+                var author = new Author
+                {
+                    Id = authId,
+                    FirstName = "Test" + i,
+                    LastName = "Last" + i,
+                    DateOfBirth = DateTime.Now
+                };
+                await AuthorService.Create(author);
 
+                var book = new Book
+                {
+                    Id = Guid.NewGuid(), 
+                    Title = "Book" + i,
+                    AuthorId = authId,
+                    ISBN = "ISBN" + i,
+                    PublicationYear = DateTime.Now
+                };
+                await BookService.Create(book);
+            }
         }
-
-}
+    }
 }

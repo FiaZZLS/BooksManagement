@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BookManagement\BookManagement.domain.csproj" />
+    <ProjectReference Include="..\BooksManagement\BooksManagement.csproj" />
   </ItemGroup>
 
 </Project>

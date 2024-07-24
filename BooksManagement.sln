@@ -5,18 +5,20 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookManagement.EntityFramework", "EntityFramework\BookManagement.EntityFramework.csproj", "{7CB5541E-21E8-444A-8B2F-0339B672C19D}"
 	ProjectSection(ProjectDependencies) = postProject
-		{A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE} = {A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE}
+		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07} = {9E3C8D62-BF05-4BC3-934F-08AFA0843C07}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{032806F4-26E0-4854-8787-67B87006ED49}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7CB5541E-21E8-444A-8B2F-0339B672C19D} = {7CB5541E-21E8-444A-8B2F-0339B672C19D}
-		{A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE} = {A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.domain", "BookManagement\BookManagement.domain.csproj", "{A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.WPF", "WPF\BookManagement.WPF.csproj", "{1C99D9C9-4B79-4CDD-89E5-6361B5955157}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07} = {9E3C8D62-BF05-4BC3-934F-08AFA0843C07}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksManagement", "BooksManagement\BooksManagement.csproj", "{9E3C8D62-BF05-4BC3-934F-08AFA0843C07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,14 +34,14 @@ Global
 		{032806F4-26E0-4854-8787-67B87006ED49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{032806F4-26E0-4854-8787-67B87006ED49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{032806F4-26E0-4854-8787-67B87006ED49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1BDC7E4-D3C0-4C64-BACE-99C89ACEE0EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C99D9C9-4B79-4CDD-89E5-6361B5955157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C99D9C9-4B79-4CDD-89E5-6361B5955157}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C99D9C9-4B79-4CDD-89E5-6361B5955157}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C99D9C9-4B79-4CDD-89E5-6361B5955157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

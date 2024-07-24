@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BooksManagement\BooksManagement.csproj" />
+    <ProjectReference Include="..\WPF\BookManagement.WPF.csproj" />
   </ItemGroup>
 
 </Project>

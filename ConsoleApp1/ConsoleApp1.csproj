@@ -8,8 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BooksManagement\BooksManagement.csproj" />
-    <ProjectReference Include="..\EntityFramework\EntityFramework.csproj" />
+    <ProjectReference Include="..\EntityFramework\BookManagement.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

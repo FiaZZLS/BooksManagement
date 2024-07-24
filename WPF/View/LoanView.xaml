@@ -6,26 +6,44 @@
              xmlns:local="clr-namespace:BookManagement.WPF.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical" Margin="10">
-            <DatePicker SelectedDate="{Binding LoanDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
-            <DatePicker SelectedDate="{Binding ReturnDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
-            <TextBox Text="{Binding Borrower, UpdateSourceTrigger=PropertyChanged}"  Margin="0,0,0,5"/>
-            <ComboBox ItemsSource="{Binding Books}" SelectedValue="{Binding BookId, Mode=TwoWay}" SelectedValuePath="Id" DisplayMemberPath="Title" Margin="0,0,0,5"/>
-
-            <Button Command="{Binding AddCommand}" Content="Add Loan" Margin="0,0,0,5"/>
-            <Button Command="{Binding UpdateCommand}" Content="Update Loan" Margin="0,0,0,5"/>
-            <Button Command="{Binding DeleteCommand}" Content="Delete Loan" Margin="0,0,0,5"/>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="Loan Date:" VerticalAlignment="Center" />
+                <DatePicker Width="200" SelectedDate="{Binding LoanDate, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="Return Date:" VerticalAlignment="Center" />
+                <DatePicker Width="200" SelectedDate="{Binding ReturnDate, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="Borrower:" VerticalAlignment="Center" />
+                <TextBox Width="200" Text="{Binding Borrower, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="Book:" VerticalAlignment="Center" />
+                <ComboBox Width="200" ItemsSource="{Binding Books}" DisplayMemberPath="Title" SelectedItem="{Binding SelectedBook}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Button Content="Add" Command="{Binding AddCommand}" Width="75" Margin="5,0,0,0" />
+                <Button Content="Update" Command="{Binding UpdateCommand}" Width="75" Margin="5,0,0,0" />
+                <Button Content="Delete" Command="{Binding DeleteCommand}" Width="75" Margin="5,0,0,0" />
+            </StackPanel>
         </StackPanel>
 
-        <DataGrid ItemsSource="{Binding Loans}" 
-                  SelectedItem="{Binding SelectedLoan, Mode=TwoWay}" 
-                  AutoGenerateColumns="True" 
-                  Grid.Row="1" Margin="10"/>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Loans}" SelectedItem="{Binding SelectedLoan}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Loan Date" Binding="{Binding LoanDate, StringFormat={}{0:yyyy-MM-dd}}" Width="*" />
+                <DataGridTextColumn Header="Return Date" Binding="{Binding ReturnDate, StringFormat={}{0:yyyy-MM-dd}}" Width="150" />
+                <DataGridTextColumn Header="Borrower" Binding="{Binding Borrower}" Width="150" />
+                <DataGridTextColumn Header="Book Title" Binding="{Binding Book.Title}" Width="150" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
+
 </UserControl>

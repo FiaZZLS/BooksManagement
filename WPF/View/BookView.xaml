@@ -25,6 +25,10 @@
                 <TextBlock Width="100" Text="Publication Year:" VerticalAlignment="Center" />
                 <DatePicker Width="200" SelectedDate="{Binding PublicationYear, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="Author:" VerticalAlignment="Center" />
+                <ComboBox Width="200" ItemsSource="{Binding Authors}" DisplayMemberPath="FirstName" SelectedItem="{Binding SelectedAuthor}" />
+            </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                 <Button Content="Add" Command="{Binding AddCommand}" Width="75" Margin="5,0,0,0" />
                 <Button Content="Update" Command="{Binding UpdateCommand}" Width="75" Margin="5,0,0,0" />
@@ -35,9 +39,11 @@
         <DataGrid Grid.Row="1" ItemsSource="{Binding Books}" SelectedItem="{Binding SelectedBook}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" />
-                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="150" />
-                <DataGridTextColumn Header="Publication Year" Binding="{Binding PublicationYear, StringFormat={}{0:yyyy}}" Width="100" />
+                <DataGridTextColumn Header="Author" Binding="{Binding AuthorId}" Width="250" />
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="250" />
+                <DataGridTextColumn Header="Publication Year" Binding="{Binding PublicationYear, StringFormat={}{0:yyyy}}" Width="150" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
+
 </UserControl>

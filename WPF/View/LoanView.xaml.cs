@@ -26,7 +26,7 @@ namespace BookManagement.WPF.View
         public LoanView()
         {
             InitializeComponent();
-            DataContext = new LoanViewModel(new LoanRepository(new BooksDbContext()));
+            DataContext = new LoanViewModel(new LoanRepository(new BooksDbContext()), new BookRepository(new BooksDbContext()));
 
         }
     }

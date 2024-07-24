@@ -26,7 +26,7 @@ namespace BookManagement.WPF.View
         public BookView()
         {
             InitializeComponent();
-            DataContext = new BookViewModel(new BookRepository(new BooksDbContext()));
+            DataContext = new BookViewModel(new BookRepository(new BooksDbContext()), new AuthorRepository(new BooksDbContext()));
 
 
         }

@@ -17,28 +17,30 @@ namespace BookManagement.WPF.ViewModels
     public class LoanViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly ILoanService _loanService;
+        private readonly IBookService _bookService;
 
         private Loan _selectedLoan;
+        private Book _selectedBook;
         private DateTime _loanDate;
         private DateTime _returnDate;
         private string _borrower;
-        private Guid _bookId;
 
         public ObservableCollection<Loan> Loans { get; } = new ObservableCollection<Loan>();
+        public ObservableCollection<Book> Books { get; } = new ObservableCollection<Book>();
 
         public ICommand AddCommand { get; }
         public ICommand UpdateCommand { get; }
         public ICommand DeleteCommand { get; }
 
-        public LoanViewModel(ILoanService loanService)
+        public LoanViewModel(ILoanService loanService, IBookService bookService)
         {
             _loanService = loanService;
+            _bookService = bookService;
             AddCommand = new RelayCommand(_ => AddLoan());
             UpdateCommand = new RelayCommand(_ => UpdateLoan(), _ => SelectedLoan != null);
             DeleteCommand = new RelayCommand(_ => DeleteLoan(), _ => SelectedLoan != null);
+
             InitializeAsync().ConfigureAwait(false);
-
-
         }
 
         public Loan SelectedLoan
@@ -53,8 +55,18 @@ namespace BookManagement.WPF.ViewModels
                     LoanDate = _selectedLoan.LoanDate;
                     ReturnDate = _selectedLoan.ReturnDate;
                     Borrower = _selectedLoan.Borrower;
-                    BookId = _selectedLoan.BookId;
+                    SelectedBook = Books.FirstOrDefault(b => b.Id == _selectedLoan.BookId);
                 }
+            }
+        }
+
+        public Book SelectedBook
+        {
+            get => _selectedBook;
+            set
+            {
+                _selectedBook = value;
+                OnPropertyChanged();
             }
         }
 
@@ -88,16 +100,6 @@ namespace BookManagement.WPF.ViewModels
             }
         }
 
-        public Guid BookId
-        {
-            get => _bookId;
-            set
-            {
-                _bookId = value;
-                OnPropertyChanged();
-            }
-        }
-
         private async void AddLoan()
         {
             var newLoan = new Loan
@@ -106,7 +108,7 @@ namespace BookManagement.WPF.ViewModels
                 LoanDate = LoanDate,
                 ReturnDate = ReturnDate,
                 Borrower = Borrower,
-                BookId = BookId
+                BookId = SelectedBook?.Id ?? Guid.Empty
             };
 
             await _loanService.Create(newLoan);
@@ -114,7 +116,7 @@ namespace BookManagement.WPF.ViewModels
             ClearInputs();
         }
 
-        private async Task LoadBooks()
+        private async Task LoadLoans()
         {
             if (_loanService == null)
                 throw new InvalidOperationException("LoanService is not initialized.");
@@ -135,8 +137,30 @@ namespace BookManagement.WPF.ViewModels
             }
         }
 
+        private async Task LoadBooks()
+        {
+            if (_bookService == null)
+                throw new InvalidOperationException("BookService is not initialized.");
+
+            try
+            {
+                Books.Clear();
+                var books = await _bookService.GetAll();
+                foreach (var book in books)
+                {
+                    Books.Add(book);
+                }
+                Console.WriteLine($"Loaded {Books.Count} books.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching books: {ex.Message}");
+            }
+        }
+
         private async Task InitializeAsync()
         {
+            await LoadLoans();
             await LoadBooks();
         }
 
@@ -147,9 +171,10 @@ namespace BookManagement.WPF.ViewModels
             SelectedLoan.LoanDate = LoanDate;
             SelectedLoan.ReturnDate = ReturnDate;
             SelectedLoan.Borrower = Borrower;
-            SelectedLoan.BookId = BookId;
+            SelectedLoan.BookId = SelectedBook?.Id ?? Guid.Empty;
 
             await _loanService.Update(SelectedLoan.Id, SelectedLoan);
+
             var index = Loans.IndexOf(SelectedLoan);
             if (index >= 0)
             {
@@ -172,7 +197,7 @@ namespace BookManagement.WPF.ViewModels
             LoanDate = DateTime.Today;
             ReturnDate = DateTime.Today;
             Borrower = string.Empty;
-            BookId = Guid.Empty;
+            SelectedBook = null;
             SelectedLoan = null;
         }
 

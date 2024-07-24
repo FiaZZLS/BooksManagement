@@ -41,13 +41,13 @@ namespace BookManagement.WPF.Commands
                         _navigator.CurrentViewModel = new HomeViewModel();
                         break;
                     case ViewType.Book:
-                        _navigator.CurrentViewModel = new BookViewModel(_bookservice);
+                        _navigator.CurrentViewModel = new BookViewModel(_bookservice ,_authorservice);
                         break;
                     case ViewType.Author:
                         _navigator.CurrentViewModel = new AuthorViewModel(_authorservice);
                         break;
                     case ViewType.Loan:
-                        _navigator.CurrentViewModel = new LoanViewModel(_loanservice);
+                        _navigator.CurrentViewModel = new LoanViewModel(_loanservice ,_bookservice);
                         break;
                     default:
                         break;

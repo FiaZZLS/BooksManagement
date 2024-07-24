@@ -28,15 +28,7 @@ class Program
 
         });
         ILoanService LoanService = new LoanRepository(new BooksDbContext());
-        LoanService.Create(new Loan
-        {
-            Id = new Guid(),
-            LoanDate = DateTime.Now,
-            ReturnDate = DateTime.Now.AddDays(1),
-            Borrower = "Name1",
-            BookId= new Guid("F5C6CA96-99C5-44FA-1EBB-08DCABD46A38")
-
-        });
+        LoanService.GetAll();
 
 }
 }

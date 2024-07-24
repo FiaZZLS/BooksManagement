@@ -47,7 +47,6 @@ namespace EntityFramework.DataRepository
         public async Task<List<Book>> GetAll()
         {
             return await _dbContext.Books
-                .AsNoTracking()
                 .ToListAsync();
         }
 

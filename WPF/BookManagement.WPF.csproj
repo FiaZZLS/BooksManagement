@@ -10,10 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooksManagement\BookManagement.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="View\" />
+    <ProjectReference Include="..\EntityFramework\BookManagement.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

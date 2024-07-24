@@ -1,4 +1,9 @@
-﻿using BookManagement.WPF.ViewModels;
+﻿using BookManagement.WPF.View;
+using BookManagement.WPF.ViewModels;
+using BooksManagement.Models;
+using EntityFramework.DataRepository;
+using EntityFramework;
+using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -17,6 +22,7 @@ namespace WPF
             window.Show();
             base.OnStartup(e);
         }
+
     }
 
 }

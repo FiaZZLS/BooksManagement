@@ -1,5 +1,6 @@
 ﻿using BookManagement.WPF.State.Navigators;
 using BookManagement.WPF.ViewModels;
+using BooksManagement.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace BookManagement.WPF.Commands
     public class UpdateCurrentViewModelCommand : ICommand
     {
         private INavigator _navigator;
+        private readonly IBookService _bookservice;
+        private readonly IAuthorService _authorservice;
+        private readonly ILoanService _loanservice;
+
+
         public UpdateCurrentViewModelCommand(INavigator navigator)
         {
             _navigator = navigator;
@@ -35,13 +41,13 @@ namespace BookManagement.WPF.Commands
                         _navigator.CurrentViewModel = new HomeViewModel();
                         break;
                     case ViewType.Book:
-                        _navigator.CurrentViewModel = new BookViewModel();
+                        _navigator.CurrentViewModel = new BookViewModel(_bookservice);
                         break;
                     case ViewType.Author:
-                        _navigator.CurrentViewModel = new AuthorViewModel();
+                        _navigator.CurrentViewModel = new AuthorViewModel(_authorservice);
                         break;
                     case ViewType.Loan:
-                        _navigator.CurrentViewModel = new LoanViewModel();
+                        _navigator.CurrentViewModel = new LoanViewModel(_loanservice);
                         break;
                     default:
                         break;

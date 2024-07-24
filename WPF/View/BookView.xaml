@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="BookManagement.WPF.View.BookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookManagement.WPF.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="Title:" VerticalAlignment="Center" />
+                <TextBox Width="200" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="ISBN:" VerticalAlignment="Center" />
+                <TextBox Width="200" Text="{Binding ISBN, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Width="100" Text="Publication Year:" VerticalAlignment="Center" />
+                <DatePicker Width="200" SelectedDate="{Binding PublicationYear, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Button Content="Add" Command="{Binding AddCommand}" Width="75" Margin="5,0,0,0" />
+                <Button Content="Update" Command="{Binding UpdateCommand}" Width="75" Margin="5,0,0,0" />
+                <Button Content="Delete" Command="{Binding DeleteCommand}" Width="75" Margin="5,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Books}" SelectedItem="{Binding SelectedBook}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" />
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" Width="150" />
+                <DataGridTextColumn Header="Publication Year" Binding="{Binding PublicationYear, StringFormat={}{0:yyyy}}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

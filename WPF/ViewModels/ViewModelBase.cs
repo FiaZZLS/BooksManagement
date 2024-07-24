@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookManagement.WPF.ViewModels
 {
-    public class BookViewModel : ViewModelBase
+    public class ViewModelBase
     {
     }
 }

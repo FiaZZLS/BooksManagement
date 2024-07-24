@@ -9,7 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BooksManagement\BooksManagement.csproj" />
+    <ProjectReference Include="..\BooksManagement\BookManagement.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="View\" />
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{032806F4-26E0-4854-8787-67B87006ED49}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7CB5541E-21E8-444A-8B2F-0339B672C19D} = {7CB5541E-21E8-444A-8B2F-0339B672C19D}
+		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07} = {9E3C8D62-BF05-4BC3-934F-08AFA0843C07}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.WPF", "WPF\BookManagement.WPF.csproj", "{1C99D9C9-4B79-4CDD-89E5-6361B5955157}"
@@ -18,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.WPF", "WPF\B
 		{9E3C8D62-BF05-4BC3-934F-08AFA0843C07} = {9E3C8D62-BF05-4BC3-934F-08AFA0843C07}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksManagement", "BooksManagement\BooksManagement.csproj", "{9E3C8D62-BF05-4BC3-934F-08AFA0843C07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManagement.Domain", "BooksManagement\BookManagement.Domain.csproj", "{9E3C8D62-BF05-4BC3-934F-08AFA0843C07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
